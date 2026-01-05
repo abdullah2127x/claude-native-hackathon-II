@@ -3,9 +3,10 @@
 
 ## Core Principles
 
-### I. Spec-Driven Development (NON-NEGOTIABLE)
-All implementation must be based on written specifications; No code may be written without an approved specification; Specifications must be refined until Claude Code generates correct output.
-<!-- Implementation follows specifications, not ad-hoc development -->
+
+### I. Test-Driven Development (TDD)
+All new features and bug fixes must be implemented using a Test-Driven Development approach; Tests must be written with `pytest` and pass before any functional code is considered complete.
+<!-- Emphasizes TDD and specifies pytest as the testing framework -->
 
 ### II. No Manual Coding Rule
 All code must be generated via Claude Code based on specifications; No hand-written code is permitted; Any deviation violates the constitution.
@@ -20,12 +21,20 @@ All data must remain in memory during application runtime; No persistent storage
 <!-- Technology constraint specific to Phase 1 requirements -->
 
 ### V. Basic CRUD Operations Only
-Must implement exactly 5 core operations: Add, Delete, Update, View, Mark Complete; No advanced features like priorities, tags, due dates, or recurring tasks.
+Must implement core operations for task management; No advanced features like priorities, tags, due dates, or recurring tasks.
 <!-- Feature completeness boundary for Phase 1 -->
 
 ### VI. Clean Python Code Standards
 All code must follow Python best practices and PEP 8 guidelines; Proper error handling and user feedback required; Clear, maintainable code structure mandated.
 <!-- Quality standards for implementation -->
+
+### VII. Network Communication Prohibition
+Network communication of any kind is prohibited in Phase I; No HTTP requests, sockets, or network APIs may be used; Any implementation that attempts network communication must halt immediately.
+<!-- Hard prohibition on network communication for Phase 1 -->
+
+### VIII. Persistent Storage Prohibition
+Writing data to files, databases, or any external storage must not occur under any circumstance; All data must remain in memory only; Violation of this constraint voids all development work.
+<!-- Absolute prohibition on persistent storage for Phase 1 -->
 
 ## Technology Stack Requirements
 <!-- Additional Constraints, Technology Requirements, etc. -->
@@ -45,5 +54,5 @@ Specifications must be written before implementation; Claude Code must generate 
 This constitution governs all development activities for Phase 1; Amendments require explicit update to constitution file; All PRs/reviews must verify compliance with these principles; Deviations require constitution update before implementation.
 <!-- Governance and compliance requirements -->
 
-**Version**: 1.0.0 | **Ratified**: 2026-01-05 | **Last Amended**: 2026-01-05
+**Version**: 1.1.0 | **Ratified**: 2026-01-05 | **Last Amended**: 2026-01-05
 <!-- Version: MAJOR.MINOR.PATCH | Ratified: YYYY-MM-DD | Last Amended: YYYY-MM-DD -->
