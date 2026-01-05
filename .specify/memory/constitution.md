@@ -1,55 +1,58 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Claude Native Hackathon II Constitution
+<!-- Constitution for Hackathon II Phase I: Claude Native Todo Console App -->
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### I. Test-Driven Development (TDD)
+All new features and bug fixes must be implemented using a Test-Driven Development approach; Tests must be written with `pytest` and pass before any functional code is considered complete.
+<!-- Emphasizes TDD and specifies pytest as the testing framework -->
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. No Manual Coding Rule
+All code must be generated via Claude Code based on specifications; No hand-written code is permitted; Any deviation violates the constitution.
+<!-- Strict adherence to AI-assisted development methodology -->
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### III. Phase 1 Scope Boundaries
+Implementation limited to Phase 1 requirements only; No features from future phases may be implemented until constitution is updated; Console-only interface with in-memory storage.
+<!-- Clear scope limitations prevent feature creep -->
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### IV. In-Memory Storage Constraint
+All data must remain in memory during application runtime; No persistent storage, databases, or file I/O allowed in Phase 1; Data loss on application exit is expected behavior.
+<!-- Technology constraint specific to Phase 1 requirements -->
 
-### [PRINCIPLE_6_NAME]
+### V. Basic CRUD Operations Only
+Must implement core operations for task management; No advanced features like priorities, tags, due dates, or recurring tasks.
+<!-- Feature completeness boundary for Phase 1 -->
 
+### VI. Clean Python Code Standards
+All code must follow Python best practices and PEP 8 guidelines; Proper error handling and user feedback required; Clear, maintainable code structure mandated.
+<!-- Quality standards for implementation -->
 
-[PRINCIPLE__DESCRIPTION]
+### VII. Network Communication Prohibition
+Network communication of any kind is prohibited in Phase I; No HTTP requests, sockets, or network APIs may be used; Any implementation that attempts network communication must halt immediately.
+<!-- Hard prohibition on network communication for Phase 1 -->
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### VIII. Persistent Storage Prohibition
+Writing data to files, databases, or any external storage must not occur under any circumstance; All data must remain in memory only; Violation of this constraint voids all development work.
+<!-- Absolute prohibition on persistent storage for Phase 1 -->
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Technology Stack Requirements
+<!-- Additional Constraints, Technology Requirements, etc. -->
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Python 3.13+ with UV package manager required; Claude Code and Spec-Kit Plus tools mandatory; Console interface only - no web UI or frontend development.
+<!-- Technology stack boundaries and requirements -->
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+<!-- Development Process, Review Process, Quality Gates, etc. -->
+
+Specifications must be written before implementation; Claude Code must generate all code based on specs; All changes must comply with constitution principles; Regular verification that no manual coding occurred.
+<!-- Process requirements for development workflow -->
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+<!-- Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution governs all development activities for Phase 1; Amendments require explicit update to constitution file; All PRs/reviews must verify compliance with these principles; Deviations require constitution update before implementation.
+<!-- Governance and compliance requirements -->
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.1.0 | **Ratified**: 2026-01-05 | **Last Amended**: 2026-01-05
+<!-- Version: MAJOR.MINOR.PATCH | Ratified: YYYY-MM-DD | Last Amended: YYYY-MM-DD -->
