@@ -1,5 +1,5 @@
-# Todo In-Memory Console App Constitution
-<!-- Constitution for Hackathon II Phase I: Todo In-Memory Python Console App -->
+# Claude Native Hackathon II Constitution
+<!-- Constitution for Hackathon II Phase I: Claude Native Todo Console App -->
 
 ## Core Principles
 
