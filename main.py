@@ -1,5 +1,5 @@
 def main():
-    print("Hello from todo-in-memory-console-app!")
+    print("Hello from claude-native-hackathon-II!")
 
 
 if __name__ == "__main__":
