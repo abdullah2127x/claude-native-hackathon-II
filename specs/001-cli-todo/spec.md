@@ -66,19 +66,20 @@ As a user, I want to mark tasks as complete so that I can track my progress and 
 
 ### Functional Requirements
 
-- **FR-001**: System MUST allow users to add new tasks with a title and optional description
-- **FR-002**: System MUST display all tasks with their ID, title, description, and completion status
+- **FR-001**: System MUST allow users to add new tasks with a title and optional description (max 500 characters)
+- **FR-002**: System MUST display all tasks with their auto-generated sequential ID, title, description, and boolean completion status
 - **FR-003**: Users MUST be able to update existing tasks by ID with new title and/or description
 - **FR-004**: Users MUST be able to delete tasks by their unique ID
 - **FR-005**: System MUST allow users to toggle task completion status by ID
-- **FR-006**: System MUST provide a command-line interface for all operations
+- **FR-006**: System MUST provide an interactive command-line interface with arrow-key selection for all operations
 - **FR-007**: System MUST store tasks in memory during the application session
 - **FR-008**: System MUST validate task IDs exist before performing update/delete operations
 - **FR-009**: System MUST provide clear error messages when invalid operations are attempted
+- **FR-010**: System MUST prompt user to enter a title if left empty during task creation
 
 ### Key Entities *(include if feature involves data)*
 
-- **Task**: Represents a todo item with ID, title, description, and completion status
+- **Task**: Represents a todo item with auto-generated sequential ID, title, optional description (max 500 chars), and boolean completion status
 - **Task List**: Collection of tasks managed by the application in memory
 
 ## Success Criteria *(mandatory)*
@@ -89,3 +90,13 @@ As a user, I want to mark tasks as complete so that I can track my progress and 
 - **SC-002**: Application successfully handles at least 100 tasks in memory without performance degradation
 - **SC-003**: 95% of user operations (add, view, update, delete, complete) complete successfully without errors
 - **SC-004**: Users can navigate all functionality through clear command-line prompts with 100% success rate
+
+## Clarifications
+
+### Session 2026-01-07
+
+- Q: Should Task IDs be auto-generated sequential numbers, user-provided, or UUIDs? → A: Auto-generated sequential numbers (1, 2, 3, etc.)
+- Q: How should completion status be represented in the Task entity? → A: Boolean flag (true/false)
+- Q: What command interface style should be used? → A: Interactive prompt with arrow-key selection
+- Q: How should the system handle empty task titles? → A: Prompt user to enter a title if left empty
+- Q: Should task descriptions be required with max length? → A: Optional with reasonable max length (e.g., 500 characters)
