@@ -11,10 +11,10 @@
 ## Decision: UI Beautification Approach
 **Rationale**: Need to format CLI output with colors, spacing, and icons as specified
 **Alternatives considered**:
-- `py-cli-beautifier` (as specified in requirements): Purpose-built for CLI beautification
+- `py-cli-beautifier` (Claude Code skill): Purpose-built for CLI beautification
 - `rich`: Popular for rich text formatting in terminals
 - `colorama`: Simple cross-platform colored terminal text
-**Chosen**: `py-cli-beautifier` - specifically mentioned in requirements and designed for this purpose
+**Chosen**: `py-cli-beautifier` as Claude Code skill - specifically mentioned in requirements and designed for this purpose
 
 ## Decision: Testing Framework
 **Rationale**: Constitution requires TDD with pytest
@@ -42,3 +42,7 @@
 ## Decision: Network Communication Compliance
 **Rationale**: Constitution prohibits network communication during runtime
 **Verification**: Confirmed that inquirer library operates locally for UI interaction without network communication during runtime; network may only be used during initial package installation
+
+## Decision: Agent Skills Usage
+**Rationale**: User specified that py-cli-beautifier and python-test-generator are Claude Code agent skills
+**Approach**: Use these as AI agent skills rather than Python packages to generate UI formatting and test code respectively

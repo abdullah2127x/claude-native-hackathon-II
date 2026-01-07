@@ -213,6 +213,7 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 - Python 3.13+ (as per constitution) + inquirer (for interactive CLI), py-cli-beautifier (for UI formatting), python-test-generator (for TDD) (001-cli-todo)
 - In-memory only (as per constitution - no persistent storage) (001-cli-todo)
 - Python 3.13+ (as per constitution) + inquirer (for interactive CLI - operates locally with no network communication), py-cli-beautifier (for UI formatting), python-test-generator (for TDD) (001-cli-todo)
+- Python 3.13+ (as per constitution) + inquirer (for interactive CLI - verified to operate locally without network communication during runtime), py-cli-beautifier (Claude Code skill for UI formatting), python-test-generator (Claude Code skill for TDD) (001-cli-todo)
 
 ## Recent Changes
 - 001-cli-todo: Added Python 3.13+ (as per constitution) + inquirer (for interactive CLI), py-cli-beautifier (for UI formatting), python-test-generator (for TDD)

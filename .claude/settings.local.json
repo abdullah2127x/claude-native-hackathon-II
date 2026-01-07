@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dir \"history\\\\prompts\\\\constitution\")"
+      "Bash(dir \"history\\\\prompts\\\\constitution\")",
+      "Bash(dir \"D:/AbdullahQureshi/workspace/Hackathon-2025/hackathon-2/todo-in-memory-console-app/src/lib/\")",
+      "Bash(dir \"D:/AbdullahQureshi/workspace/Hackathon-2025/hackathon-2/todo-in-memory-console-app/tests/\")",
+      "Bash(dir \"D:/AbdullahQureshi/workspace/Hackathon-2025/hackathon-2/todo-in-memory-console-app/\")",
+      "Bash(dir \"D:/AbdullahQureshi/workspace/Hackathon-2025/hackathon-2/todo-in-memory-console-app/src/services/\")",
+      "Bash(dir \"D:/AbdullahQureshi/workspace/Hackathon-2025/hackathon-2/todo-in-memory-console-app/src/cli/\")"
     ]
   }
 }

@@ -1,7 +1,9 @@
 [project]
 name = "claude-native-hackathon-II"
 version = "0.1.0"
-description = "Add your description here"
+description = "CLI-based todo application with in-memory storage"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "inquirer",
+]
