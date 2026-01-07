@@ -95,7 +95,7 @@ Within each user story, these tasks can be executed in parallel:
 - [ ] T037 Add icons and colors to distinguish completed vs pending tasks
 - [ ] T038 Enhance task display with formatting using py-cli-beautifier
 - [ ] T039 Implement proper error messages with formatting using py-cli-beautifier
-- [ ] T039.1 [US1] Add pagination or scrolling for displaying many tasks in view operations
+- [ ] T039.1 [US1] Add pagination when displaying more than 20 tasks to improve usability
 
 ## Phase 7: Edge Cases and Validation
 
@@ -111,6 +111,7 @@ Within each user story, these tasks can be executed in parallel:
 - [ ] T044 Add proper error handling and user feedback for all operations
 - [ ] T044.1 [US1] Handle empty task title input with user prompt and validation
 - [ ] T044.2 [US2,US3] Handle invalid task IDs during operations with error message
+- [ ] T044.3 [US1] Handle duplicate task prevention during add operations with appropriate validation
 - [ ] T045 Generate contract tests for TaskService interface in tests/contract/test_task_service_contract.py
 
 ## Phase 8: Integration and Polish
@@ -120,7 +121,9 @@ Within each user story, these tasks can be executed in parallel:
 - [ ] T046 [P] Create integration tests for CLI interface in tests/integration/test_cli.py
 - [ ] T047 Test complete user workflows across all functionality
 - [ ] T048 Add comprehensive error handling throughout application
-- [ ] T049 Verify application handles 100+ tasks in memory with <5 seconds response time per operation per SC-001, <100MB memory usage per constitution
+- [ ] T049.1 Verify application handles 100+ tasks in memory with <5 seconds response time per operation per SC-001
+- [ ] T049.2 Verify application memory usage remains under 100MB as per constitution requirement
 - [ ] T050 Final testing and validation of all user stories and requirements
 - [ ] T051 Update quickstart guide with complete usage instructions
 - [ ] T052 Verify all implemented functionality complies with constitution principles (no network communication, in-memory only, TDD approach)
+- [ ] T052.1 Verify inquirer library operates without network communication during runtime as per constitution VII

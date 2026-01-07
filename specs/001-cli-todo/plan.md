@@ -12,7 +12,7 @@ Implement a CLI-based todo application with in-memory storage following TDD prin
 ## Technical Context
 
 **Language/Version**: Python 3.13+ (as per constitution)
-**Primary Dependencies**: inquirer (for interactive CLI - operates locally with no network communication), py-cli-beautifier (for UI formatting), python-test-generator (for TDD)
+**Primary Dependencies**: inquirer (for interactive CLI - verified to operate locally without network communication during runtime), py-cli-beautifier (for UI formatting), python-test-generator (for TDD)
 **Storage**: In-memory only (as per constitution - no persistent storage)
 **Testing**: pytest (as per constitution and TDD requirement)
 **Target Platform**: Cross-platform console application (Windows, macOS, Linux)
