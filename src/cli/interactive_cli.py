@@ -3,6 +3,7 @@ Interactive CLI interface for the todo application.
 """
 import inquirer
 from src.services.task_service import TaskService
+from src.lib.voice_input import get_voice_input
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
@@ -79,16 +80,57 @@ class InteractiveCLI:
         """
         self.console.print(Panel("[bold blue]Add New Task[/bold blue]"))
 
-        # Get task title
-        title_question = [
-            inquirer.Text('title', message="Enter task title")
+        # Ask user if they want to use voice input
+        input_method_question = [
+            inquirer.List(
+                'input_method',
+                message="How would you like to enter the task?",
+                choices=[
+                    'Text Input',
+                    'Voice Input'
+                ],
+            ),
         ]
 
-        title_answer = inquirer.prompt(title_question)
-        if not title_answer:
+        input_method_answer = inquirer.prompt(input_method_question)
+        if not input_method_answer:
             return
 
-        title = title_answer['title'].strip()
+        input_method = input_method_answer['input_method']
+
+        title = ""
+
+        if input_method == 'Voice Input':
+            # Use voice input to get the task title
+            self.console.print("[cyan]Using voice input...[/cyan]")
+            voice_result = get_voice_input()
+
+            if voice_result:
+                title = voice_result.strip()
+                self.console.print(f"[green]Voice input captured: {title}[/green]")
+
+                # Confirm with user if they want to use this title
+                confirm_question = [
+                    inquirer.Confirm('confirm', message=f"Do you want to use '{title}' as the task title?")
+                ]
+                confirm_answer = inquirer.prompt(confirm_question)
+
+                if not confirm_answer or not confirm_answer['confirm']:
+                    # If user doesn't confirm, fall back to text input
+                    self.console.print("[yellow]Voice input rejected. Falling back to text input.[/yellow]")
+                    title = self._get_title_text_input()
+                else:
+                    # Use the voice input as the title
+                    pass
+            else:
+                # Voice input failed or was cancelled, fall back to text input
+                self.console.print("[yellow]Voice input failed or cancelled. Falling back to text input.[/yellow]")
+                title = self._get_title_text_input()
+        else:
+            # Use text input
+            title = self._get_title_text_input()
+
+        # If title is still empty after all attempts, exit
         if not title:
             self.console.print("[red]Task title cannot be empty. Please try again.[/red]")
             return
@@ -117,6 +159,20 @@ class InteractiveCLI:
                 retry_answer = inquirer.prompt(retry_question)
                 if retry_answer and retry_answer['retry']:
                     self._add_task()  # Recursive call to try again
+
+    def _get_title_text_input(self):
+        """
+        Helper method to get task title via text input
+        """
+        title_question = [
+            inquirer.Text('title', message="Enter task title")
+        ]
+
+        title_answer = inquirer.prompt(title_question)
+        if not title_answer:
+            return ""
+
+        return title_answer['title'].strip()
 
     def _view_tasks(self):
         """
