@@ -1,3 +1,20 @@
+<!--
+SYNC IMPACT REPORT:
+Version change: 2.0.0 → 2.1.0
+Modified principles:
+- Tech Stack (added specific version constraints)
+- Code Quality (expanded with specific requirements)
+- Architecture (added authentication and performance principles)
+Added sections: Performance Requirements
+Removed sections: None
+Templates requiring updates:
+- ✅ .specify/templates/plan-template.md
+- ✅ .specify/templates/spec-template.md
+- ✅ .specify/templates/tasks-template.md
+- ✅ .specify/templates/commands/*.md
+Follow-up TODOs: None
+-->
+
 # Project Constitution
 
 ## Core Principles
@@ -19,9 +36,11 @@ All code MUST be generated via Claude Code based on specifications; Hand-written
 All code MUST follow language-specific best practices; Every file MUST reference the Task ID and Spec that authorized its creation.
 
 **Standards**:
-- Type hints required
-- Linting rules enforced
-- Consistent formatting applied
+- Type safety: TypeScript strict mode, Python type hints
+- Error handling on all API endpoints
+- Input validation using Pydantic/Zod
+- Test coverage minimum 70%
+- No hardcoded credentials
 
 **Rationale**: Quality and traceability are non-negotiable.
 
@@ -93,35 +112,45 @@ Every user MUST only access their own data; User identity MUST be cryptographica
 
 ### XI. Authentication
 
-JWT-based authentication is REQUIRED; Shared secret MUST secure frontend and backend communication; Token verification MUST occur before data access.
+JWT-based authentication is REQUIRED; Shared secret MUST secure frontend and backend communication; Token verification MUST occur before data access; Better Auth with JWT tokens is REQUIRED.
 
 **Rationale**: Stateless authentication enables scalability.
 
 ### XII. Architecture
 
-Monorepo structure is REQUIRED; Frontend and backend MUST be separated; Specifications MUST be shared between both.
+Monorepo structure is REQUIRED; Frontend and backend MUST be separated; Specifications MUST be shared between both; Backend exposes REST API only; All database queries through SQLModel ORM; Environment variables for all secrets.
 
 **Rationale**: Single repository enables full context visibility and simplifies specification management.
+
+### XIII. Performance Requirements
+
+API response time MUST be < 200ms; Database queries MUST be optimized with indexes; Frontend initial load MUST be < 2s.
+
+**Rationale**: Performance requirements ensure responsive user experience.
 
 ---
 
 ## Technology Stack
 
-**Frontend**: Next.js, TypeScript, Tailwind CSS, Better Auth
+**Frontend**: Next.js 16 App Router, TypeScript, Tailwind CSS, Better Auth
 
-**Backend**: Python, FastAPI, SQLModel, Pydantic
+**Backend**: Python FastAPI with SQLModel, Pydantic
 
-**Database**: PostgreSQL (Neon Serverless)
+**Database**: Neon Serverless PostgreSQL
+
+**Authentication**: Better Auth with JWT tokens
+
+**Deployment**: Vercel (frontend), separate backend
 
 **Development**: Claude Code, Spec-Kit Plus
 
-**Rationale**: Technology stack is fixed.
+**Rationale**: Technology stack is fixed and MUST be followed as specified.
 
 ---
 
-**Version**: 2.0.0
+**Version**: 2.1.0
 **Ratified**: 2026-01-05
-**Last Amended**: 2026-01-08
+**Last Amended**: 2026-01-11
 
 ---
 
