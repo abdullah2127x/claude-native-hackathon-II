@@ -167,7 +167,6 @@ If ALL true, suggest creating an ADR.
 
 **See constitution for complete technology stack details.**
 
----
 
-*For frontend-specific guidance, see `frontend/CLAUDE.md`*
-*For backend-specific guidance, see `backend/CLAUDE.md`*
+## Recent Changes
+- 001-todo-crud: Added TypeScript (Next.js 16), P(Faython 3.11 stAPI) + Next.js 16 App Router, FastAPI, SQLModel, Better Auth, Pydantic, Neon Serverless PostgreSQL

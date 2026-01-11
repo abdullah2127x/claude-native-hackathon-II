@@ -38,6 +38,16 @@ UI Requirements:
 This is Phase 2 of the hackathon - we have 5 basic features to implement.
 This is the foundation that all future features build upon."
 
+## Clarifications
+
+### Session 2026-01-11
+
+- Q: What are the specific security requirements for user authentication? → A: Standard security practices - bcrypt hashing, rate limiting, secure session tokens
+- Q: What are the data storage and persistence requirements? → A: Permanent storage with daily backups
+- Q: What are the performance requirements for API operations? → A: API responses under 500ms for standard operations
+- Q: What are the error handling and retry mechanisms? → A: Standard retry with exponential backoff for transient failures
+- Q: What are the audit logging requirements? → A: Standard audit logging for authentication and data changes
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - User Authentication and Session Management (Priority: P1)
@@ -118,8 +128,8 @@ A user needs to interact with the application on various devices with clear feed
 ### Functional Requirements
 
 - **FR-001**: System MUST allow users to create accounts with email and password
-- **FR-002**: System MUST authenticate users via email and password credentials
-- **FR-003**: System MUST maintain user sessions across page refreshes
+- **FR-002**: System MUST authenticate users via email and password credentials with bcrypt hashing
+- **FR-003**: System MUST maintain user sessions across page refreshes with secure session tokens
 - **FR-004**: System MUST redirect unauthenticated users to sign-in page when accessing protected routes
 - **FR-005**: System MUST allow users to sign out and clear their session
 - **FR-006**: System MUST allow authenticated users to create new todo tasks with title and description
@@ -132,10 +142,14 @@ A user needs to interact with the application on various devices with clear feed
 - **FR-013**: System MUST allow authenticated users to delete their todos
 - **FR-014**: System MUST allow authenticated users to mark todos as complete/incomplete
 - **FR-015**: System MUST ensure users only see their own todos
-- **FR-016**: System MUST display appropriate loading states during operations
-- **FR-017**: System MUST display success/error messages for user actions
-- **FR-018**: System MUST provide helpful validation errors for forms
-- **FR-019**: System MUST be responsive and work on mobile and desktop devices
+- **FR-016**: System MUST implement rate limiting to prevent abuse
+- **FR-017**: System MUST implement permanent data storage with daily backups
+- **FR-018**: System MUST implement standard retry with exponential backoff for transient failures
+- **FR-019**: System MUST implement standard audit logging for authentication and data changes
+- **FR-020**: System MUST display appropriate loading states during operations
+- **FR-021**: System MUST display success/error messages for user actions
+- **FR-022**: System MUST provide helpful validation errors for forms
+- **FR-023**: System MUST be responsive and work on mobile and desktop devices
 
 ### Key Entities *(include if feature involves data)*
 
@@ -154,3 +168,4 @@ A user needs to interact with the application on various devices with clear feed
 - **SC-006**: 90% of users successfully complete primary tasks (create, view, update, delete) on first attempt
 - **SC-007**: The application works responsively on screen sizes ranging from 320px to 1920px width
 - **SC-008**: Form validation provides clear, helpful feedback within 500ms of user action
+- **SC-009**: Backend API responds to standard operations in under 500ms
