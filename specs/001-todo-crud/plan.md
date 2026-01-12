@@ -13,6 +13,7 @@ Implementation of a Todo CRUD Operations feature with user authentication and au
 
 **Language/Version**: TypeScript (Next.js 16), Python 3.11 (FastAPI)
 **Primary Dependencies**: Next.js 16 App Router, FastAPI, SQLModel, Better Auth, Pydantic, Neon Serverless PostgreSQL
+**Package Management**: uv (Universal Python Package Installer) for fast dependency resolution and installation
 **Storage**: Neon Serverless PostgreSQL database with SQLModel ORM
 **Testing**: pytest (backend), Jest/React Testing Library (frontend)
 **Target Platform**: Web application (deployed on Vercel frontend, separate backend)

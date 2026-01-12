@@ -602,6 +602,7 @@ Gather context to ensure successful implementation:
 | Source | Gather |
 |--------|--------|
 | **Codebase** | Existing database configuration, SQLModel models, Alembic setup, environment variables |
+| **Environment** | uv package manager setup, pyproject.toml dependencies, virtual environment configuration |
 | **Conversation** | User's specific requirements for Neon integration, migration needs, connection settings |
 | **Skill References** | Neon and PostgreSQL patterns from `references/` (connections, migrations, error handling) |
 | **User Guidelines** | Project-specific conventions, team standards, security requirements |

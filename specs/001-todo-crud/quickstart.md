@@ -22,17 +22,15 @@ cd <repository-directory>
 # Navigate to backend directory
 cd backend
 
-# Create virtual environment
-python -m venv venv
+# Install and use uv (required package manager)
+# Create virtual environment with uv
+uv venv
 
-# Activate virtual environment
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
+# Install dependencies using uv (mandatory)
+uv sync
 
-# Install dependencies
-pip install -r requirements.txt
+# Or install in development mode:
+uv pip install -e .
 
 # Set up environment variables
 cp .env.example .env
@@ -69,8 +67,8 @@ alembic upgrade head
 
 #### Start Backend Server
 ```bash
-# Run the server
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+# Run the server with uv (mandatory approach)
+uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 ### 3. Frontend Setup
@@ -166,9 +164,9 @@ curl -X GET "http://localhost:8000/v1/users/{user_id}/todos" \
 
 ### Running Tests
 ```bash
-# Backend tests
+# Backend tests (using uv - mandatory)
 cd backend
-pytest
+uv run pytest
 
 # Frontend tests
 cd frontend
@@ -177,11 +175,11 @@ npm run test
 
 ### Database Migrations
 ```bash
-# Create a new migration
-alembic revision --autogenerate -m "Description of changes"
+# Create a new migration (using uv - mandatory)
+uv run alembic revision --autogenerate -m "Description of changes"
 
-# Apply migrations
-alembic upgrade head
+# Apply migrations (using uv - mandatory)
+uv run alembic upgrade head
 ```
 
 ## Troubleshooting

@@ -52,7 +52,15 @@ from app.routes.$1 import router as $1_router
 app.include_router($1_router, prefix="/api", tags=["$1s"])
 ```
 
-### 4. Create Tests
+### 4. Update Dependencies
+**File:** `backend/pyproject.toml`
+
+Add any new dependencies to the pyproject.toml file and sync with uv:
+```bash
+uv sync
+```
+
+### 5. Create Tests
 **File:** `backend/tests/test_$1.py`
 
 Create tests for:
@@ -69,6 +77,7 @@ Create tests for:
 - [ ] Database session properly managed (no leaks)
 - [ ] Status codes correct (200, 201, 400, 404, 401)
 - [ ] Response models properly typed
+- [ ] Dependencies added to pyproject.toml and synced with uv
 - [ ] Tests pass with >70% coverage
 - [ ] Follows fastapi-sqlmodel-patterns skill
 - [ ] User isolation enforced (user_id filtering)

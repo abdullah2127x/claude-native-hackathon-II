@@ -567,6 +567,7 @@ Gather context to ensure successful implementation:
 | Source | Gather |
 |--------|--------|
 | **Codebase** | Existing FastAPI project structure, SQLModel models, API patterns, database configuration |
+| **Environment** | uv package manager setup, pyproject.toml dependencies, virtual environment configuration |
 | **Conversation** | User's specific requirements for endpoints, models, or validation rules |
 | **Skill References** | FastAPI and SQLModel patterns from `references/` (models, endpoints, validation, etc.) |
 | **User Guidelines** | Project-specific conventions, team standards, security requirements |
