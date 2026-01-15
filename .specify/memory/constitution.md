@@ -1,17 +1,15 @@
 <!--
 SYNC IMPACT REPORT:
-Version change: 2.0.0 → 2.1.0
+Version change: 2.1.0 → 2.2.0
 Modified principles:
-- Tech Stack (added specific version constraints)
-- Code Quality (expanded with specific requirements)
-- Architecture (added authentication and performance principles)
-Added sections: Performance Requirements
-Removed sections: None
+- Scope Boundaries (refined from feature list to constitutional principles)
+- Removed specific feature enumeration (belongs in specifications)
+Added sections: None
+Removed sections: Required Features, Prohibited Features (replaced with Scope Boundaries)
 Templates requiring updates:
-- ✅ .specify/templates/plan-template.md
-- ✅ .specify/templates/spec-template.md
-- ✅ .specify/templates/tasks-template.md
-- ✅ .specify/templates/commands/*.md
+- ✅ .specify/templates/plan-template.md (no changes needed)
+- ✅ .specify/templates/spec-template.md (no changes needed)
+- ✅ .specify/templates/tasks-template.md (no changes needed)
 Follow-up TODOs: None
 -->
 
@@ -65,28 +63,21 @@ This constitution governs all development; Amendments require version bump; Comp
 
 ---
 
-## Project Scope
+## Project Scope & Boundaries
 
-### VI. Required Features
+### VI. Scope Boundaries
 
-- Basic CRUD operations (Add, Delete, Update, View, Mark Complete) as web application
-- User authentication
-- Multi-user task isolation
-- RESTful API
-- Persistent database storage
-- Responsive UI
+Phase 2 scope is LIMITED to multi-user web application with basic task management; Features beyond specification are PROHIBITED; All features MUST be documented in specification before implementation.
 
-### VII. Prohibited Features
+**Current Phase**: Phase 2 - Full-Stack Web Application
 
-- AI chatbot or natural language processing
-- Advanced task features (priorities, tags, dates, recurring, reminders)
-- Real-time collaboration
-- Mobile native applications
-- Container orchestration
-- Event-driven architecture
-- Voice commands
+**Scope Constraints**:
+- MUST implement only features defined in active specifications
+- MUST NOT add features without specification approval
+- MUST maintain focus on core task management operations
+- MUST NOT implement AI, advanced scheduling, or distributed systems features
 
-**Rationale**: Clear boundaries prevent scope creep.
+**Rationale**: Constitutional scope boundaries prevent feature creep while allowing specifications to evolve within defined limits.
 
 ---
 
@@ -148,9 +139,9 @@ API response time MUST be < 200ms; Database queries MUST be optimized with index
 
 ---
 
-**Version**: 2.1.0
+**Version**: 2.2.0
 **Ratified**: 2026-01-05
-**Last Amended**: 2026-01-11
+**Last Amended**: 2026-01-15
 
 ---
 
