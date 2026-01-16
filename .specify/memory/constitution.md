@@ -125,7 +125,7 @@ API response time MUST be < 200ms; Database queries MUST be optimized with index
 
 **Frontend**: Next.js 16 App Router, TypeScript, Tailwind CSS, Better Auth
 
-**Backend**: Python FastAPI with SQLModel, Pydantic
+**Backend**: Python FastAPI with SQLModel, Pydantic (using uv as the required package manager)
 
 **Database**: Neon Serverless PostgreSQL
 
@@ -139,9 +139,9 @@ API response time MUST be < 200ms; Database queries MUST be optimized with index
 
 ---
 
-**Version**: 2.2.0
+**Version**: 2.2.1
 **Ratified**: 2026-01-05
-**Last Amended**: 2026-01-15
+**Last Amended**: 2026-01-16
 
 ---
 
