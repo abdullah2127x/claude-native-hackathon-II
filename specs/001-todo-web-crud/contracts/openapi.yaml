@@ -1,0 +1,381 @@
+openapi: 3.0.3
+info:
+  title: Todo Web Application API
+  description: RESTful API for task management with user authentication
+  version: 1.0.0
+  contact:
+    name: Spec-Kit Plus
+servers:
+  - url: http://localhost:8000
+    description: Development server
+
+security:
+  - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token from Better Auth
+
+  schemas:
+    TaskCreate:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: Task title (required)
+          example: Buy groceries
+        description:
+          type: string
+          maxLength: 2000
+          nullable: true
+          description: Task description (optional)
+          example: Milk, eggs, bread
+
+    TaskUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: Updated task title
+        description:
+          type: string
+          maxLength: 2000
+          nullable: true
+          description: Updated task description
+        completed:
+          type: boolean
+          description: Task completion status
+
+    Task:
+      type: object
+      required:
+        - id
+        - user_id
+        - title
+        - completed
+        - created_at
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique task identifier
+          example: 550e8400-e29b-41d4-a716-446655440000
+        user_id:
+          type: string
+          format: uuid
+          description: Owner user identifier
+        title:
+          type: string
+          maxLength: 200
+          description: Task title
+          example: Buy groceries
+        description:
+          type: string
+          maxLength: 2000
+          nullable: true
+          description: Task description
+          example: Milk, eggs, bread
+        completed:
+          type: boolean
+          description: Whether task is complete
+          example: false
+        created_at:
+          type: string
+          format: date-time
+          description: Creation timestamp
+          example: "2026-01-16T10:30:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Last update timestamp
+          example: "2026-01-16T11:00:00Z"
+
+    TaskList:
+      type: object
+      required:
+        - data
+        - total
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        total:
+          type: integer
+          description: Total number of tasks
+          example: 10
+
+    Error:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: Not Found
+        message:
+          type: string
+          description: Human-readable error message
+          example: Task with id '123' not found
+
+    ValidationError:
+      type: object
+      required:
+        - error
+        - message
+        - details
+      properties:
+        error:
+          type: string
+          example: Validation Error
+        message:
+          type: string
+          example: Request validation failed
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: title
+              code:
+                type: string
+                example: required
+              message:
+                type: string
+                example: Title is required
+
+    HealthCheck:
+      type: object
+      properties:
+        status:
+          type: string
+          example: healthy
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      description: Check if the API is running
+      operationId: healthCheck
+      tags:
+        - Health
+      security: []
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheck'
+
+  /api/todos:
+    get:
+      summary: List tasks
+      description: Get all tasks for the authenticated user
+      operationId: listTasks
+      tags:
+        - Tasks
+      responses:
+        '200':
+          description: List of tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskList'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Unauthorized
+                message: Invalid or expired token
+
+    post:
+      summary: Create task
+      description: Create a new task for the authenticated user
+      operationId: createTask
+      tags:
+        - Tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCreate'
+      responses:
+        '201':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+  /api/todos/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Task ID
+        schema:
+          type: string
+          format: uuid
+
+    get:
+      summary: Get task
+      description: Get a specific task by ID
+      operationId: getTask
+      tags:
+        - Tasks
+      responses:
+        '200':
+          description: Task details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Not Found
+                message: Task not found
+
+    patch:
+      summary: Update task
+      description: Update an existing task
+      operationId: updateTask
+      tags:
+        - Tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskUpdate'
+      responses:
+        '200':
+          description: Task updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+    delete:
+      summary: Delete task
+      description: Permanently delete a task
+      operationId: deleteTask
+      tags:
+        - Tasks
+      responses:
+        '204':
+          description: Task deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/todos/{id}/toggle:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Task ID
+        schema:
+          type: string
+          format: uuid
+
+    post:
+      summary: Toggle task completion
+      description: Toggle the completion status of a task
+      operationId: toggleTask
+      tags:
+        - Tasks
+      responses:
+        '200':
+          description: Task completion toggled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+tags:
+  - name: Health
+    description: API health check endpoints
+  - name: Tasks
+    description: Task management endpoints
