@@ -1,19 +1,20 @@
 /**
  * Dashboard Page - Task management interface
  * Spec: 001-todo-web-crud
- * Task: T082, T083
+ * Task: T082, T083, T110-T128
  */
 
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { TaskForm } from "@/components/tasks/TaskForm";
-import { EmptyState } from "@/components/tasks/EmptyState";
+import { TaskList } from "@/components/tasks/TaskList";
 import { useTasks } from "@/hooks/useTasks";
 import type { TaskCreateInput } from "@/lib/validations/task";
 
 export default function DashboardPage() {
-  const { tasks, isLoading, error, fetchTasks, createTask } = useTasks();
+  const { tasks, isLoading, error, fetchTasks, createTask, updateTask, deleteTask, toggleTask } = useTasks();
+  const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchTasks();
@@ -23,9 +24,53 @@ export default function DashboardPage() {
     await createTask(data);
   };
 
+  const handleEditTask = (taskId: string) => {
+    setEditingTaskId(taskId);
+  };
+
+  const handleUpdateTask = async (data: TaskCreateInput) => {
+    if (editingTaskId) {
+      await updateTask(editingTaskId, data);
+      setEditingTaskId(null);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditingTaskId(null);
+  };
+
+  const handleToggleTask = async (taskId: string) => {
+    await toggleTask(taskId);
+  };
+
+  const handleDeleteTask = async (taskId: string) => {
+    await deleteTask(taskId);
+  };
+
+  const editingTask = editingTaskId ? tasks.find((t) => t.id === editingTaskId) : null;
+
   return (
     <div className="px-4 sm:px-0">
       <h2 className="text-2xl font-bold text-gray-900 mb-4">My Tasks</h2>
+
+      {/* Edit task modal */}
+      {editingTask && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+            <h3 className="text-lg font-medium text-gray-900 mb-4">Edit Task</h3>
+            <TaskForm
+              mode="edit"
+              onSubmit={handleUpdateTask}
+              onCancel={handleCancelEdit}
+              isLoading={isLoading}
+              defaultValues={{
+                title: editingTask.title,
+                description: editingTask.description || undefined,
+              }}
+            />
+          </div>
+        </div>
+      )}
 
       {/* Task creation form */}
       <div className="bg-white shadow rounded-lg p-6 mb-6">
@@ -43,44 +88,13 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {isLoading && tasks.length === 0 ? (
-          <div className="text-center py-8">
-            <p className="text-gray-500">Loading tasks...</p>
-          </div>
-        ) : tasks.length === 0 ? (
-          <EmptyState />
-        ) : (
-          <div className="space-y-3">
-            {tasks.map((task) => (
-              <div
-                key={task.id}
-                className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h4 className="text-base font-medium text-gray-900">
-                      {task.title}
-                    </h4>
-                    {task.description && (
-                      <p className="mt-1 text-sm text-gray-600">{task.description}</p>
-                    )}
-                    <p className="mt-2 text-xs text-gray-500">
-                      Created: {new Date(task.created_at).toLocaleDateString()}
-                    </p>
-                  </div>
-                  <div className="ml-4">
-                    <input
-                      type="checkbox"
-                      checked={task.completed}
-                      readOnly
-                      className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        <TaskList
+          tasks={tasks}
+          isLoading={isLoading}
+          onToggle={handleToggleTask}
+          onEdit={handleEditTask}
+          onDelete={handleDeleteTask}
+        />
       </div>
     </div>
   );

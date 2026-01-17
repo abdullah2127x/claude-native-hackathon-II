@@ -1,7 +1,7 @@
 /**
  * TaskForm - Form component for creating and editing tasks
  * Spec: 001-todo-web-crud
- * Task: T079
+ * Task: T079, T112
  */
 
 "use client";
@@ -14,11 +14,19 @@ import { Button } from "@/components/ui/Button";
 
 interface TaskFormProps {
   onSubmit: (data: TaskCreateInput) => Promise<void>;
+  onCancel?: () => void;
   isLoading?: boolean;
   defaultValues?: Partial<TaskCreateInput>;
+  mode?: "create" | "edit";
 }
 
-export function TaskForm({ onSubmit, isLoading = false, defaultValues }: TaskFormProps) {
+export function TaskForm({
+  onSubmit,
+  onCancel,
+  isLoading = false,
+  defaultValues,
+  mode = "create"
+}: TaskFormProps) {
   const {
     register,
     handleSubmit,
@@ -31,7 +39,9 @@ export function TaskForm({ onSubmit, isLoading = false, defaultValues }: TaskFor
 
   const handleFormSubmit = async (data: TaskCreateInput) => {
     await onSubmit(data);
-    reset(); // Clear form after successful submission
+    if (mode === "create") {
+      reset(); // Clear form after successful creation
+    }
   };
 
   return (
@@ -70,13 +80,29 @@ export function TaskForm({ onSubmit, isLoading = false, defaultValues }: TaskFor
         )}
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-2">
+        {mode === "edit" && onCancel && (
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={onCancel}
+            disabled={isLoading}
+          >
+            Cancel
+          </Button>
+        )}
         <Button
           type="submit"
           variant="primary"
           disabled={isLoading}
         >
-          {isLoading ? "Creating..." : "Create Task"}
+          {mode === "edit"
+            ? isLoading
+              ? "Saving..."
+              : "Save Changes"
+            : isLoading
+            ? "Creating..."
+            : "Create Task"}
         </Button>
       </div>
     </form>
