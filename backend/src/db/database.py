@@ -8,11 +8,17 @@ from src.models.task import Task  # noqa: F401
 from src.config import settings
 
 
+# Determine connect_args based on database type
+# check_same_thread is only needed for SQLite
+connect_args = {}
+if settings.database_url.startswith("sqlite"):
+    connect_args = {"check_same_thread": False}
+
 # Create engine
 engine = create_engine(
     settings.database_url,
     echo=False,  # Set to True for SQL debugging
-    connect_args={"check_same_thread": False},  # Needed for SQLite
+    connect_args=connect_args,
 )
 
 
