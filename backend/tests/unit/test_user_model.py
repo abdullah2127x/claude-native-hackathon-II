@@ -8,7 +8,7 @@ Note: User model is read-only - managed by Better Auth, not by this application.
 These tests verify the model structure matches Better Auth's schema.
 """
 import pytest
-from datetime import datetime
+from datetime import datetime, UTC
 from src.models.user import User
 
 
@@ -23,8 +23,8 @@ class TestUserModel:
             "email": "test@example.com",
             "name": "Test User",
             "emailVerified": True,
-            "createdAt": datetime.utcnow(),
-            "updatedAt": datetime.utcnow(),
+            "createdAt": datetime.now(UTC),
+            "updatedAt": datetime.now(UTC),
         }
 
         # Act
@@ -78,7 +78,7 @@ class TestUserModel:
     def test_user_timestamps_are_set(self):
         """Test that createdAt and updatedAt timestamps are properly set"""
         # Arrange
-        before_create = datetime.utcnow()
+        before_create = datetime.now(UTC)
 
         # Act
         user = User(
@@ -87,7 +87,7 @@ class TestUserModel:
             name="Timestamp User",
         )
 
-        after_create = datetime.utcnow()
+        after_create = datetime.now(UTC)
 
         # Assert
         assert isinstance(user.createdAt, datetime)
