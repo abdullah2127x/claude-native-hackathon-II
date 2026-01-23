@@ -19,5 +19,12 @@
       "Bash(git add:*)",
       "Bash(PYTHONPATH=. uv run pytest:*)"
     ]
-  }
+  },
+  "disabledMcpjsonServers": [
+    "better-auth-docs",
+    "better-auth",
+    "playwright",
+    "context7",
+    "github"
+  ]
 }
