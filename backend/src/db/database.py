@@ -5,6 +5,7 @@ from typing import Generator
 # Import all models so SQLModel knows about them when creating tables
 from src.models.user import User  # noqa: F401
 from src.models.task import Task  # noqa: F401
+from src.models.tag import Tag, TaskTag  # noqa: F401
 from src.config import settings
 
 
