@@ -38,7 +38,7 @@ Extend the existing task management system with organizational features: task pr
 
 **Key Constraints**:
 - User isolation: ALL queries MUST filter by `user_id`
-- ncPerformae: Search/filter within 300-500ms
+- Performance: Search/filter within 300-500ms
 - Responsiveness: Mobile-first (320px+)
 - Sort preference: Persist in localStorage
 
