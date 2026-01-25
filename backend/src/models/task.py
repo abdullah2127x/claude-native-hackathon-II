@@ -1,5 +1,6 @@
 """Task model for todo items"""
 from sqlmodel import SQLModel, Field, Relationship
+from sqlalchemy import Column, Enum as SQLEnum
 from datetime import datetime, UTC
 from typing import Optional, List, TYPE_CHECKING
 import uuid
@@ -46,7 +47,15 @@ class Task(SQLModel, table=True):
     completed: bool = Field(default=False)
 
     # Priority level (NEW)
-    priority: Priority = Field(default=Priority.NONE, index=True)
+    # Using sa_column to ensure SQLAlchemy uses the string values ("none", "low", etc)
+    # not the enum names (NONE, LOW, etc)
+    priority: Priority = Field(
+        default=Priority.NONE,
+        sa_column=Column(
+            SQLEnum(Priority, native_enum=False, values_callable=lambda x: [e.value for e in x]),
+            index=True
+        )
+    )
 
     # Timestamps
     created_at: datetime = Field(default_factory=utc_now, index=True)

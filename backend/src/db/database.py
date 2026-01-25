@@ -17,10 +17,10 @@ if settings.database_url.startswith("sqlite"):
     # check_same_thread is only needed for SQLite
     connect_args = {"check_same_thread": False}
 elif settings.database_url.startswith("postgresql"):
-    # Add connection timeout and pool settings for PostgreSQL
+    # Add connection timeout for PostgreSQL
+    # Note: Don't use options with statement_timeout for Neon pooler
     connect_args = {
         "connect_timeout": 10,
-        "options": "-c statement_timeout=30000"  # 30 second statement timeout
     }
 
 # Create engine with pool settings
