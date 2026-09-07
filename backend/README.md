@@ -1,6 +1,13 @@
 # TaskCortex (Backend)
 
-This directory contains the robust backend API and AI orchestration layer for the TaskCortex application. It handles user authentication, database persistence, and integrates with large language models to interpret user intent.
+> **Asynchronous FastAPI backend and agent orchestration engine for TaskCortex, featuring SQLModel, PostgreSQL/Neon, Better Auth, and AES-256 encrypted BYOK model integration.**
+
+---
+
+> **Developed by [Abdullah Qureshi](https://abdullah-qureshi.vercel.app)**  
+> 🌐 **Portfolio**: [abdullah-qureshi.vercel.app](https://abdullah-qureshi.vercel.app) • 💼 **LinkedIn**: [abdullahqureshi27](https://www.linkedin.com/in/abdullahqureshi27) • 🐙 **GitHub**: [@abdullahqureshi27](https://github.com/abdullahqureshi27)
+
+---
 
 ## 🛠️ Tech Stack
 

@@ -113,7 +113,7 @@ export function SignUpForm() {
 
       <Input
         // label="Email"
-        placeholder="abdullah2127x@gmail.com"
+        placeholder="mabdullahqureshi583@gmail.com"
         type="email"
         {...register("email")}
         // error={errors.email?.message}

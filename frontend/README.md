@@ -1,6 +1,13 @@
 # TaskCortex (Frontend)
 
-This directory contains the frontend code for the TaskCortex application. It is built using modern web development standards to provide a highly responsive, beautiful, and interactive user experience.
+> **Modern Next.js 15 App Router interface for TaskCortex, featuring Kanban boards, responsive drawer layouts, Better Auth, and glassmorphism AI chat widgets.**
+
+---
+
+> **Developed by [Abdullah Qureshi](https://abdullah-qureshi.vercel.app)**  
+> 🌐 **Portfolio**: [abdullah-qureshi.vercel.app](https://abdullah-qureshi.vercel.app) • 💼 **LinkedIn**: [abdullahqureshi27](https://www.linkedin.com/in/abdullahqureshi27) • 🐙 **GitHub**: [@abdullahqureshi27](https://github.com/abdullahqureshi27)
+
+---
 
 ## 🛠️ Tech Stack
 

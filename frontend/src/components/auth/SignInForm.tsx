@@ -115,7 +115,7 @@ export function SignInForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <Input
         // label="Email"
-        placeholder="abdullah2127x@gmail.com"
+        placeholder="mabdullahqureshi583@gmail.com"
         type="email"
         {...register("email")}
         // error={errors.email?.message}

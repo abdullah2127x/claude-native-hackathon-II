@@ -40,12 +40,12 @@ export function Footer() {
             <h3 className="font-semibold text-foreground mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="https://github.com/0xabdullah27/TaskCortex" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition">
+                <a href="https://github.com/abdullahqureshi27/TaskCortex" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition">
                   GitHub Repository
                 </a>
               </li>
               <li>
-                <a href="https://github.com/0xabdullah27/TaskCortex/issues" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition">
+                <a href="https://github.com/abdullahqureshi27/TaskCortex/issues" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition">
                   Report an Issue
                 </a>
               </li>
@@ -57,8 +57,13 @@ export function Footer() {
             <h3 className="font-semibold text-foreground mb-4">Connect</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="https://github.com/0xabdullah27" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition">
+                <a href="https://github.com/abdullahqureshi27" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition">
                   Developer Profile
+                </a>
+              </li>
+              <li>
+                <a href="https://abdullah-qureshi.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition">
+                  Portfolio
                 </a>
               </li>
             </ul>
@@ -67,9 +72,20 @@ export function Footer() {
 
         <Separator className="bg-border mb-8" />
 
-        <div className="text-center text-sm">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-sm">
           <p>
             &copy; {currentYear} TaskCortex. All rights reserved.
+          </p>
+          <p>
+            Designed &amp; Built by{" "}
+            <a
+              href="https://abdullah-qureshi.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground underline underline-offset-4 hover:text-primary transition-colors"
+            >
+              Abdullah Qureshi
+            </a>
           </p>
         </div>
       </div>
