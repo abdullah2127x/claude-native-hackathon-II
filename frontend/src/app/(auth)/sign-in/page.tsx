@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SignInForm } from "@/components/auth/SignInForm";
 import { CheckSquare } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Sign In",
+  description: "Sign in to your TaskCortex account to access your tasks and AI copilot.",
+};
 
 export default function SignInPage() {
   return (

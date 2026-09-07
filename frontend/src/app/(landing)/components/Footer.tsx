@@ -52,13 +52,18 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Connect */}
           <div>
             <h3 className="font-semibold text-foreground mb-4">Connect</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="https://github.com/abdullahqureshi27" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition">
-                  Developer Profile
+                  GitHub Profile
+                </a>
+              </li>
+              <li>
+                <a href="https://x.com/abdullahqur27" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition">
+                  X (Twitter)
                 </a>
               </li>
               <li>

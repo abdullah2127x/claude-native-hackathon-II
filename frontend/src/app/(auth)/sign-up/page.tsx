@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SignUpForm } from "@/components/auth/SignUpForm";
 import { CheckSquare } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Sign Up",
+  description: "Create a TaskCortex account and start orchestrating your workflow with AI.",
+};
 
 export default function SignUpPage() {
   return (
